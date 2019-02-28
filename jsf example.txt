@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      >
+     
+    <h:body>
+    	
+    <h1>JSF 2 actionListener example</h1>
+		
+	<h:form id="form">
+			
+	  <h:commandButton id="submitButton" 
+		value="Submit" action="#{normal.outcome}" 
+		actionListener="#{normal.printIt}" />
+		
+	</h:form>
+		
+    </h:body>
+</html>
+
+
+package com.swetha;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.event.ActionEvent;
+ 
+@ManagedBean(name="normal")
+@SessionScoped
+public class NormalBean{
+
+	public String buttonId; 
+
+	public void printIt(ActionEvent event){
+		
+
+		buttonId = event.getComponent().getClientId();
+		
+	}
+	
+	public String outcome(){
+		return "result";
+	}
+}
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      >
+     
+    <h:body>
+    	
+    <h1>JSF 2 actionListener example</h1>
+		
+	<h:form id="form">
+		
+	  <h:commandButton id="submitButton" 
+		value="Submit" action="#{normal.outcome}" >
+		<f:actionListener type="com.swetha.NormalActionListener" />
+	  </h:commandButton>
+				
+	</h:form>
+		
+    </h:body>
+</html>
+
+
